@@ -7,8 +7,10 @@ if ! command -v 'docker-compose' > /dev/null; then
   exit 1
 fi
 
-# Give permissions to execute the docker_entrypoint file
-chmod +x ./bin/docker_entrypoint.sh
+# Install packages locally so it can be mapped via volumes on
+# docker-compose.yml file
+echo "=== Installing node packages ==="
+npm install
 
 # Build the project
 echo "=== Building node-test project ==="
