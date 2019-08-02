@@ -58,7 +58,7 @@ We have 4 main files that ensure this project will work with Docker.
 
 #### Dockerfile
 
-```docker
+```Dockerfile
 # Bring the official node 8 image from docker hub
 FROM node:8
 
