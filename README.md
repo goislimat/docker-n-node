@@ -187,3 +187,11 @@ docker-compose run web test
 ```
 
 another container is booted executing the test inside it. And if you have any other proccess that you wanted to automate, you should be able just by adding it into the `case "$COMMAND"` statement. As a bonus, you are also able to run any non automated command because of the default (`*)`) statement of this `case`.
+
+## Contributing and To Dos
+
+Help to improve this sample adding other services (like a database) and you should do the following:
+
+- Integrate the new service with the existing node code
+- If needed, explain how the user can test if this service is working
+- Add the steps to boot this new service on container and explain them
