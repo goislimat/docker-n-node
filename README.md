@@ -1,11 +1,11 @@
-# DOCKER SETUP NODE
+# DOCKER SETUP PROPOSAL
 
-Suggested setup for a project build with node and running on docker container.
+Suggested setup for a project running on top of Docker containers. This examples was built with node.
 
 This project requires:
 
-- NodeJS
-- Docker
+- **[NodeJS](https://nodejs.org/en/download/)**
+- **[Docker](https://docs.docker.com/install/)**
 
 ## Getting Started
 
@@ -163,7 +163,7 @@ esac
 
 #### How those pieces work togheter
 
-When you firt run
+When you first run
 
 ```bash
 sh ./bin/docker_setup.sh
