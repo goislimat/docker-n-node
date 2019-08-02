@@ -1,8 +1,6 @@
 # DOCKER SETUP PROPOSAL
 
-Suggested setup for a project running on top of Docker containers. This examples was built with node.
-
-This project requires:
+Suggested setup for a project running on top of Docker containers. This example was built with node and requires:
 
 - **[NodeJS](https://nodejs.org/en/download/)**
 - **[Docker](https://docs.docker.com/install/)**
@@ -12,16 +10,16 @@ This project requires:
 Clone the project and `cd` into it:
 
 ```bash
-git clone git@github.com:goislimat/node-test.git && cd node-test
+git clone git@github.com:goislimat/docker-n-node.git && cd docker-n-node
 ```
 
-Then you can make the project run with docker using:
+Then you're able to run the project with docker using:
 
 ```bash
 sh ./bin/docker_setup.sh
 ```
 
-The `docker-compose.yml` file is mapping the port `3000` inside the container into the `80` on host. So all you have to do to test everything is working is to run a
+The `docker-compose.yml` file is mapping the port `3000` inside the container into the `80` on host. So all you have to do for testing if everything is working is
 
 ```bash
 curl localhost
@@ -31,7 +29,7 @@ and you may see a `Hello World!` message from express. As an option, you should 
 
 ## Developing
 
-After the installation proccess, everytime you need to develop a new feature for this project, all you have to do is to run
+After the installation proccess, everytime you need to develop a new feature for this project, all you have to do is
 
 ```bash
 docker-compose up
@@ -41,7 +39,7 @@ and start coding.
 
 ## Testing
 
-The docker container is configured to run all you tests using a simple:
+The docker container is configured to run all your tests using a simple:
 
 ```bash
 docker-compose run web test
@@ -61,21 +59,21 @@ We have 4 main files that ensure this project will work with Docker.
 #### Dockerfile
 
 ```docker
-# Bring the official node 8 image
+# Bring the official node 8 image from docker hub
 FROM node:8
 
-# Create the app folder along side with node_modules
+# Create the app folder alongside with node_modules
 # and give permission to node user
 RUN mkdir -p /home/node/app/node_modules && \
     chown -R node:node /home/node/app
-# CD into /home/node/app folder
+# cd into /home/node/app folder
 WORKDIR /home/node/app
-# Copy the package.json and package-lock file inte the current
+# Copy the package.json and package-lock files into the current
 # directory
 COPY package*.json ./
 # Switches to node user
 USER node
-# Intall the dependencies
+# Install the dependencies
 RUN npm install
 # Copy every file from the host to the container /home/node/app
 # folder giving permission to node user
@@ -113,7 +111,7 @@ services:
 ```bash
 #!/bin/bash -e
 
-# Test if the user has docker compose installed
+# Test if the user has docker-compose installed
 echo "=== Starting project setup for docker development environment ==="
 if ! command -v 'docker-compose' > /dev/null; then
   echo "Docker Compose not installed. Install before continue."
@@ -161,7 +159,7 @@ case "$COMMAND" in
 esac
 ```
 
-#### How those pieces work togheter
+#### How those pieces work togheter?
 
 When you first run
 
@@ -181,10 +179,10 @@ and if you follow the exact steps listed here, the repository name should be `no
 
 When you bring the container up, the ports and volumes are mapped, and the `npm start` command is executed.
 
-And when you want to test running
+And when you want to test, running
 
 ```bash
 docker-compose run web test
 ```
 
-another container is booted runing the test inside it. And if you have any other proccess that you wanted to bem automated, you should be able to do it only by adding it into the `case "$COMMAND"` statement. As a bonus, you are also able to run any non automated command because of the default (`*)`) statement of this `case`.
+another container is booted executing the test inside it. And if you have any other proccess that you wanted to automate, you should be able just by adding it into the `case "$COMMAND"` statement. As a bonus, you are also able to run any non automated command because of the default (`*)`) statement of this `case`.
