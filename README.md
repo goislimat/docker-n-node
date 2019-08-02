@@ -99,7 +99,8 @@ services:
     ports:
       - "80:3000"
     # Sync the data from the current directory into the host
-    # with the /home/node/app into the container
+    # with the /home/node/app into the container allowing updates
+    # without the need of container restart
     volumes:
       - .:/home/node/app
     # Executes the npm start command inside the container
